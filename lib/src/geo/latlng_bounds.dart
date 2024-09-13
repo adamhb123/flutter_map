@@ -146,6 +146,15 @@ class LatLngBounds {
     west = max(minLongitude, min(west, bounds.west));
   }
 
+  /// Expands bounding box by [latitude] and [longitude]. This method mutates
+  /// the bounds object on which it is called.
+  void pad(double latitude, double longitude) {
+    north = min(maxLatitude, north + latitude);
+    south = max(minLatitude, south - latitude);
+    east = min(maxLongitude, east + longitude);
+    west = max(minLongitude, west - longitude);
+  }
+
   /// Obtain coordinates of southwest corner of the bounds.
   ///
   /// Instead of using latitude or longitude of the corner, use [south] or
